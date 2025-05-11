@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
+
+import '../../domain/models/transaction.dart';
 
 class TransactionDetailPage extends StatelessWidget {
   final Transaction transaction;
@@ -18,7 +19,7 @@ class TransactionDetailPage extends StatelessWidget {
             Text('ID: ${transaction.id}', style: const TextStyle(fontSize: 18)),
             Text('Description: ${transaction.description}'),
             Text('Amount: ₹${transaction.amount.toStringAsFixed(2)}'),
-            Text('Date: ${transaction.date.toLocal()}'),
+            Text('Date: ${DateTime(transaction.date).toLocal()}'),
           ],
         ),
       ),

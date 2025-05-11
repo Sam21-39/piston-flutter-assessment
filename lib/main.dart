@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'screens/transactions_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zpay/features/transactions/presentation/bloc/transaction_bloc.dart';
+import 'package:zpay/features/transactions/presentation/cubit/tx_list_cubit.dart';
+
+import 'app.dart';
+import 'features/transactions/presentation/bloc/transaction_event.dart';
 
 void main() {
-  runApp(const ZephyrPayApp());
-}
-
-class ZephyrPayApp extends StatelessWidget {
-  const ZephyrPayApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(title: 'ZephyrPay', theme: ThemeData(primarySwatch: Colors.blue), home: const TransactionsPage());
-  }
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<TxListCubit>(create: (context) => TxListCubit()),
+        BlocProvider<TransactionBloc>(
+          create:
+              (BuildContext context) =>
+                  TransactionBloc()..add(GetTransactionEvent()),
+        ),
+      ],
+      child: const ZephyrPayApp(),
+    ),
+  );
 }

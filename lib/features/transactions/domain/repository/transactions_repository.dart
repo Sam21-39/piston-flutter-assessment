@@ -1,5 +1,5 @@
+import '../../data/services/zephyr_api_service.dart';
 import '../models/transaction.dart';
-import '../services/zephyr_api_service.dart';
 
 class TransactionsRepository {
   final ZephyrApiService _apiService = ZephyrApiService();
